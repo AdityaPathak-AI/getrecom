@@ -1,4 +1,5 @@
 let movieNumber = 0;
+let filterApplied=false;
 const addMovieDiv =()=>{
     movieNumber++;
     const movies = $(".movies");
@@ -29,11 +30,28 @@ const sendForPrediction =()=>{
     $(".movie > input").each(
         (index,movieInputDiv) => {
             if(movieInputDiv.value.length > 0)
-                movies.push(movieInputDiv.value)
+                movies.push(movieInputDiv.value.toLowerCase())
         }
     );
-    console.log(movies);
+    let filter = "";
+    if(filterApplied) filter = $("#filter")[0].value;
+    let dataToSend = {
+        movies,
+        filterApplied,
+        filter,
+    }
+    console.log(JSON.stringify(dataToSend));
 }
-$(()=>{
-    $("#addButton").trigger("click");
+$(()=>{ 
+    $("#applyFilter").click(()=>{    
+        $("#filterDiv").show();
+        filterApplied=true;
+    });
+    $("#surpriseMe").click(()=>{
+        $("#filterDiv").hide();
+        filterApplied=false;
+    });
+
+    $("#addButton").click();
+    $("#surpriseMe").click();
 });
