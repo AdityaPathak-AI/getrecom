@@ -41,6 +41,19 @@ const sendForPrediction =()=>{
         filter,
     }
     console.log(JSON.stringify(dataToSend));
+    fetch("getmovie",{
+        "method" : "POST",
+        "headers": {
+            'Content-Type': 'application/json'
+        },
+        "body" : JSON.stringify(dataToSend),
+    })
+    .then(response=>{
+        if(!response.ok) throw "response not ok";
+        return response.json()
+    })
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err));
 }
 $(()=>{ 
     $("#applyFilter").click(()=>{    
