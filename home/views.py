@@ -21,3 +21,17 @@ def getmovie(request):
         return JsonResponse({"success": True, "suggestion" : dummydata})
     else:
         return JsonResponse({"success" : False, "error" : "Internal Server Error"})
+
+@csrf_exempt
+def getseries(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        #seriesTitles = data['series']
+        print(data)
+        #dummydata = {
+           # "Title" : "gameofthrones",
+           # "Cast" : "narendra modi",
+          #  }
+        return JsonResponse({"success": True, "suggestion" : data})
+    else:
+        return JsonResponse({"success" : False, "error" : "Internal Server Error"})        
