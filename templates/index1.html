@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS PROJECT</title>
+    <script src={% static 'js/jquery-3.6.0.min.js' %}></script>
+    <script src = {% static 'js/index.js' %}></script>
+</head>
+<body>
+    <h1>Project Name</h1>
+    <div class="movies">
+    </div>
+    <button type="button" onclick="addMovieDiv()" id="addButton">Add Button</button> <br>
+    Surprise me <input type="radio" id="surpriseMe" name="filterApplied" value="no"> <br>
+    Apply A Filter <input type="radio" id="applyFilter" name="filterApplied" value="yes"> <br>
+    <div id="filterDiv">
+        <select id="filter" class="filter" placeholder="---Select---">
+            <!-- ADD OPTIONS HERE -->
+            <option value="Genre">Genre</option>
+            <option value="Actor">Actor</option>
+            <option value="Actress">Actress</option>
+        </select> 
+    </div>
+    <button type="button" onclick="sendForPrediction()">Suggest</button>
+</body>
+</html>
