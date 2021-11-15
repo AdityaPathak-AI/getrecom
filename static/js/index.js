@@ -77,19 +77,43 @@ $(()=>{
         });
         $(".rect3, .rect4").hide(500);
     });
-
+    
     $("#movieLink").click(()=>{
         $("#homeComponent").hide(500,()=>{
             $("#movieComponent").show(500);
         });
         $(".rect3, .rect4").hide(500);
     });
-
+    
     $("#homeLink").click(()=>{
         $("#movieComponent").hide(500,()=>{
             $("#homeComponent").show(500);
         });
         $(".rect3, .rect4").show(500);
     });
-    
+    $("#addButton").click(()=>{
+        movieNum++;
+        movieCount++;
+        var movie = $(`
+        <div class="movie" id="${movieNum}movie">
+        <input type="text" id="${movieNum}input" placeholder="Enter Movie Name">
+        <i class='bx bx-trash trashButton movieTrash' onclick=remove(${movieNum})></i>
+        </div> `);
+        $(".movies").append(movie);
+        console.log(movie);
+        $(".movieTrash").show();
+    });
+    $("#addButton").click();
+    $(".movieTrash").hide();
 });
+var movieNum = 0;
+var movieCount = 0;
+
+const remove = (num) =>{
+    if(movieCount == 1) return;
+    console.log($(`#${num}movie`)[0]);
+    $(`#${num}movie`).remove();
+    movieCount--;
+    if(movieCount == 1)
+    $(".movieTrash").hide();
+}
