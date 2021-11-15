@@ -69,34 +69,35 @@
 //     $("#surpriseMe").click();
 // });
 
-$(()=>{
+$(() => {
     $("#movieComponent").hide();
-    $("#startButton").click(()=>{
-        $("#homeComponent").hide(500,()=>{
+    $("#startButton").click(() => {
+        $("#homeComponent").hide(500, () => {
+            $("#movieComponent").show(500);
+        });
+        $(".rect3, .rect4").hide(500);
+        $("homeLink").removeClass('nav-link active').addClass('nav-link');
+    });
+
+    $("#movieLink").click(() => {
+        $("#homeComponent").hide(500, () => {
             $("#movieComponent").show(500);
         });
         $(".rect3, .rect4").hide(500);
     });
-    
-    $("#movieLink").click(()=>{
-        $("#homeComponent").hide(500,()=>{
-            $("#movieComponent").show(500);
-        });
-        $(".rect3, .rect4").hide(500);
-    });
-    
-    $("#homeLink").click(()=>{
-        $("#movieComponent").hide(500,()=>{
+
+    $("#homeLink").click(() => {
+        $("#movieComponent").hide(500, () => {
             $("#homeComponent").show(500);
         });
         $(".rect3, .rect4").show(500);
     });
-    $("#addButton").click(()=>{
+    $("#addButton").click(() => {
         movieNum++;
         movieCount++;
         var movie = $(`
         <div class="movie" id="${movieNum}movie">
-        <input type="text" id="${movieNum}input" placeholder="Enter Movie Name">
+        <input type="text" class = "movie-title-text" id="${movieNum}input" placeholder="Enter Movie Name">
         <i class='bx bx-trash trashButton movieTrash' onclick=remove(${movieNum})></i>
         </div> `);
         $(".movies").append(movie);
@@ -109,11 +110,11 @@ $(()=>{
 var movieNum = 0;
 var movieCount = 0;
 
-const remove = (num) =>{
-    if(movieCount == 1) return;
+const remove = (num) => {
+    if (movieCount == 1) return;
     console.log($(`#${num}movie`)[0]);
     $(`#${num}movie`).remove();
     movieCount--;
-    if(movieCount == 1)
-    $(".movieTrash").hide();
+    if (movieCount == 1)
+        $(".movieTrash").hide();
 }
