@@ -1,35 +1,85 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name ="author" content="Aditya Pathak,Akshat Jain, Jash Sharma, Manan Jain">
+    <meta name="author" content="Aditya Pathak,Akshat Jain, Jash Sharma, Manan Jain">
     <title>Get Recommended</title>
     <link rel="icon" href="">
     <link rel="stylesheet" href={% static 'css/main.css' %}>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header class="head1" id="header">
-            <nav class="nav bd-grid">
-                <div class="nav-toggle" id="nav-toggle">
-                    <i class='bx bx-grid-alt' ></i>
-                </div>
-                <a href="#" class="nav-logo">RECOMM.</a>
-                <div class="nav-menu" id="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="#" class="nav-link active" id="homeLink">HOME</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" id="movieLink">MOVIE</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" id="seriesLink">SERIES</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">RANDOM</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">DASHBOARD</a></li>
-                    </ul>
-                </div>
-            </nav>    
+        <nav class="nav bd-grid">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+            <a href="#" class="nav-logo">RECOMM.</a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link active" id="homeLink">HOME</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="movieLink">MOVIE</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="seriesLink">SERIES</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">RANDOM</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">DASHBOARD</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <main>
+
+
+        <!-- id : homeComponent -->
+        <div class="home-content" id="homeComponent">
+            <section class="section-title">
+                <h1>LETS GET RECOMMENDED</h1>
+            </section>
+            <section class="section-desc">
+                <h3>AND MAKE ARE WEEKEND MORE FUN</h3>
+            </section>
+            <!-- id : startButton -->
+            <button class="reco" id="startButton">Recommend Me</button>
+        </div>
+
+
+        <!-- id : movieComponent -->
+        <div class="recom-movie" id="movieComponent">
+            <h1 class="page-title">MOVIE</h1>
+            <!-- <svg class="bg-shape">
+                <rect width="778" height="619" rx="75" fill="white"/>
+            </svg> -->
+
+            <div class="movieform" action="" method="post">
+                <div class="movies">
+                    <!-- <div class="movie">
+                        <input type="text" id="1input" placeholder="Enter Movie Name">
+                        <i class='bx bx-trash trashButton'></i>
+                    </div> -->
+                </div>
+
+                <div><button class="input-button" id="addButton">ADD+</button></div>
+                <div class="radios">
+                    <input class="radioB" type="radio" name="userPreference" id="addFilter" value="ADD FILTER">
+                    <label for="addFilter" class="radioBLabel">ADD FILTER</label>
+                    <input class="radioB" type="radio" name="userPreference" id="suprise" value="SUPRISE">
+                    <label for="suprise" class="radioBLabel">SUPRISE</label>
+                </div>
+                <div>
+                    <label for="movie">Choose a filter</label>
+                    <select name="movie" class="choosefilter" id="filter">
+                    <option value="Director">Director</option>
+                    <option value="Actor">Actor</option>
+                    <option value="Actress">Actress</option>
+                </select><br>
+                </div>
+                <button class="submitnow">SUGGEST ME</button>
+            </div>
+        </div>
         <div class="bg-art">
             <svg class="rect1">
                 <g>
@@ -48,60 +98,14 @@
             </svg>
             <svg class="rect4">
                 <g>
-                <rect x="138" y="640.68" width="940" height="833" rx="60" transform="rotate(-45 138 640.68)" fill="#00A9DE" fill-opacity="0.7" shape-rendering="crispEdges"/>
+                <!-- <rect x="138" y="640.68" width="940" height="833" rx="60" transform="rotate(-45 138 640.68)" fill="#00A9DE" fill-opacity="0.7" shape-rendering="crispEdges"/> -->
                 </g>
-            </svg> 
+            </svg>
         </div>
-
-        <!-- id : homeComponent -->
-        <div class="home-content" id="homeComponent">
-            <section class="section-title">
-                <h1>LETS GET RECOMMENDED</h1>
-            </section>
-            <section class="section-desc">
-                <h3>AND MAKE ARE WEEKEND MORE FUN</h3>
-            </section>
-        <!-- id : startButton -->
-            <button class="reco" id="startButton">Recommend Me</button>
-        </div>
-
-
-        <!-- id : movieComponent -->
-        <div class="recom-movie" id="movieComponent">
-            <h1 class="page-title">MOVIE</h1>
-            <!-- <svg class="bg-shape">
-                <rect width="778" height="619" rx="75" fill="white"/>
-            </svg> -->
-                  
-            <div class="movieform" action="" method="post">
-                <div class="movies">
-                    <!-- <div class="movie">
-                        <input type="text" id="1input" placeholder="Enter Movie Name">
-                        <i class='bx bx-trash trashButton'></i>
-                    </div> -->
-                </div>
-                
-                <div><button class="input-button" id="addButton">ADD+</button></div>
-                <div class="radios">
-                        <input class="radio" type="radio" name="addFilter" value="ADD FILTER">
-                        <label for="">ADD FILTER</label>
-                        <input class="radio" type="radio"  name="sort" value="SUPRISE">
-                        <label for="">SUPRISE</label>
-                </div>
-                <div>
-                <label for="movie">Choose a filter</label>
-                <select name="movie" id="filter">
-                    <option value="Director">Director</option>
-                    <option value="Actor">Actor</option>
-                    <option value="Actress">Actress</option>
-                </select><br>
-                </div>
-                <button class="submitnow">SUGGEST ME</button>
-            </div>
-        </div>
-    </main>    
+    </main>
     <script src={% static 'js/jquery-3.6.0.min.js' %}></script>
-    <script src={% static 'js/main.js' %}></script>    
-    <script src={% static 'js/index.js' %}></script>    
+    <script src={% static 'js/main.js' %}></script>
+    <script src={% static 'js/index.js' %}></script>
 </body>
+
 </html>
