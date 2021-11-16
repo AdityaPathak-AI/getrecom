@@ -80,6 +80,8 @@ $(() => {
         $("#movieLink").addClass('active')
         $("#homeLink").removeClass('active')
             // changes ends
+            // for adding
+            $(".rect1, .rect2").addClass("rect12-Movie");
     });
 
     $("#movieLink").click(() => {
@@ -92,8 +94,7 @@ $(() => {
         $("#homeLink").removeClass('active')
             // changes ends
             // for adding
-        $(".rect1, .rect2").addClass(".rect12-Movie");
-        // for removing
+            $(".rect1, .rect2").addClass("rect12-Movie");
     });
 
     $("#homeLink").click(() => {
@@ -105,7 +106,7 @@ $(() => {
         $("#homeLink").addClass('active')
         $("#movieLink").removeClass('active')
             // changes ends
-        $(".rect1, .rect2").removeClass(".rect12-Movie");
+        $(".rect1, .rect2").removeClass("rect12-Movie");
 
     });
     $("#addButton").click(() => {
