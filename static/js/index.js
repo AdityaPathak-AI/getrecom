@@ -76,7 +76,10 @@ $(() => {
             $("#movieComponent").show(500);
         });
         $(".rect3, .rect4").hide(500);
-        $("homeLink").removeClass('nav-link active').addClass('nav-link');
+        // changes
+        $("#movieLink").addClass('active')
+        $("#homeLink").removeClass('active')
+            // changes ends
     });
 
     $("#movieLink").click(() => {
@@ -84,6 +87,13 @@ $(() => {
             $("#movieComponent").show(500);
         });
         $(".rect3, .rect4").hide(500);
+        // changes
+        $("#movieLink").addClass('active')
+        $("#homeLink").removeClass('active')
+            // changes ends
+            // for adding
+        $(".rect1, .rect2").addClass(".rect12-Movie");
+        // for removing
     });
 
     $("#homeLink").click(() => {
@@ -91,14 +101,20 @@ $(() => {
             $("#homeComponent").show(500);
         });
         $(".rect3, .rect4").show(500);
+        // changes
+        $("#homeLink").addClass('active')
+        $("#movieLink").removeClass('active')
+            // changes ends
+        $(".rect1, .rect2").removeClass(".rect12-Movie");
+
     });
     $("#addButton").click(() => {
         movieNum++;
         movieCount++;
         var movie = $(`
         <div class="movie" id="${movieNum}movie">
-        <input type="text" class = "movie-title-text" id="${movieNum}input" placeholder="Enter Movie Name">
-        <i class='bx bx-trash trashButton movieTrash' onclick=remove(${movieNum})></i>
+            <input type="text" class = "movie-title-text" id="${movieNum}input" placeholder="Enter Movie Name">
+            <i class='bx bx-trash trashButton movieTrash' onclick=remove(${movieNum})></i>
         </div> `);
         $(".movies").append(movie);
         console.log(movie);

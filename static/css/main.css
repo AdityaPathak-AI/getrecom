@@ -86,14 +86,18 @@ a {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
     font-size: 1.3rem;
-    opacity: 50%;
     transition: 1000ms;
     z-index: 10;
 }
 
 .reco:hover {
     transform: translateY(-.25rem);
-    opacity: 100%;
+}
+
+.reco:active {
+    color: #FFFFFF;
+    background-color: #343434;
+    transform: translateY(+.25rem);
 }
 
 .bg-shape {
@@ -111,12 +115,30 @@ a {
     text-align: center;
 }
 
+.movie {
+    transition: 1000ms;
+}
+
+select {
+    padding: 5px;
+    width: 100px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    transition: 1000ms;
+}
+
+select:focus {
+    outline: none;
+    border: #00A5D9;
+}
+
 .submitnow {
     height: 3rem;
     width: 10rem;
     border: 0ch;
     border-radius: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 10%;
     justify-content: center;
     align-self: center;
     background-color: #9b9b9b;
@@ -129,6 +151,12 @@ a {
 .submitnow:hover {
     transform: translateY(-.25rem);
     opacity: 100%;
+}
+
+.submitnow:active {
+    color: #FFFFFF;
+    background-color: #343434;
+    transform: translateY(+.25rem);
 }
 
 .bd-grid {
@@ -167,6 +195,7 @@ a {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -1;
+    transition: 1000ms;
 }
 
 .rect2 {
@@ -180,6 +209,7 @@ a {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -2;
+    transition: 1000ms;
 }
 
 .rect3 {
@@ -193,6 +223,7 @@ a {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -3;
+    transition: 1000ms;
 }
 
 .rect4 {
@@ -206,6 +237,17 @@ a {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -4;
+    transition: 1000ms;
+}
+
+.rect12-Movie {
+    width: 1300px;
+    height: 1200px;
+    transform: rotate(-45deg);
+}
+
+.onStartRotate {
+    transform: rotate(-45deg);
 }
 
 .page-title {
@@ -292,18 +334,31 @@ a {
 
 .movie-title-text {
     margin-bottom: 10px;
+    padding: 10px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: #343434;
+    transition: 1000ms;
+}
+
+.movie-title-text:focus {
+    outline: none;
+    border-color: #00A5D9;
 }
 
 .input-button {
     margin-bottom: 10px;
+    padding: 5px;
     border: 0ch;
+    border-radius: 0.2rem;
     background-color: #3c3c3c;
     color: rgb(255, 255, 255);
     opacity: 50%;
-    transition: 1000ms;
+    transition: 500ms;
 }
 
-.input-button :hover {
+.input-button:hover {
     background-color: #1a1a1a;
     color: rgb(255, 255, 255);
     opacity: 100%;
