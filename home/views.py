@@ -34,4 +34,8 @@ def getseries(request):
           #  }
         return JsonResponse({"success": True, "suggestion" : data})
     else:
-        return JsonResponse({"success" : False, "error" : "Internal Server Error"})        
+        return JsonResponse({"success" : False, "error" : "Internal Server Error"})
+
+# @csrf_exempt
+# def homepage(request):
+#     return render(request, "index.html")

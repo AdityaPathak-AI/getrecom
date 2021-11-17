@@ -223,7 +223,7 @@ select:focus {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -3;
-    transition: 1000ms;
+    /* transition: 1000ms; */
 }
 
 .rect4 {
@@ -237,7 +237,7 @@ select:focus {
     border-radius: 60px;
     transform: rotate(-45deg);
     z-index: -4;
-    transition: 1000ms;
+    /* transition: 1000ms; */
 }
 
 .rect12-Movie {
@@ -246,9 +246,15 @@ select:focus {
     transform: rotate(-45deg);
 }
 
-.onStartRotate {
-    transform: rotate(-45deg);
+.react34-Movie {
+    width: 0px;
+    height: 0px;
 }
+
+
+/* .onStartRotate {
+    transform: rotate(-45deg);
+} */
 
 .page-title {
     font-size: 4rem;

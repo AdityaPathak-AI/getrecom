@@ -70,6 +70,21 @@
 // });
 
 $(() => {
+
+    //Pending To Impliment
+
+    // $("#logoMainComponant").click(() => {
+    //     $("#movieComponent").hide(500, () => {
+    //         $("#homeComponent").show(500);
+    //     });
+    //     $(".rect3, .rect4").show(500);
+    //     // changes
+    //     $("#homeLink").addClass('active')
+    //     $("#movieLink").removeClass('active')
+    //         // changes ends
+    //     $(".rect1, .rect2").removeClass("rect12-Movie");
+    // });
+
     $("#movieComponent").hide();
     $("#startButton").click(() => {
         $("#homeComponent").hide(500, () => {
@@ -81,7 +96,7 @@ $(() => {
         $("#homeLink").removeClass('active')
             // changes ends
             // for adding
-            $(".rect1, .rect2").addClass("rect12-Movie");
+        $(".rect1, .rect2").addClass("rect12-Movie");
     });
 
     $("#movieLink").click(() => {
@@ -94,10 +109,10 @@ $(() => {
         $("#homeLink").removeClass('active')
             // changes ends
             // for adding
-            $(".rect1, .rect2").addClass("rect12-Movie");
+        $(".rect1, .rect2").addClass("rect12-Movie");
     });
 
-    $("#homeLink").click(() => {
+    $("#homeLink,#logoMainComponant").click(() => {
         $("#movieComponent").hide(500, () => {
             $("#homeComponent").show(500);
         });
@@ -107,8 +122,8 @@ $(() => {
         $("#movieLink").removeClass('active')
             // changes ends
         $(".rect1, .rect2").removeClass("rect12-Movie");
-
     });
+
     $("#addButton").click(() => {
         movieNum++;
         movieCount++;
