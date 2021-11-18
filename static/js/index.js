@@ -69,8 +69,6 @@
 //     $("#surpriseMe").click();
 // });
 
-$(() => {
-
     //Pending To Impliment
 
     // $("#logoMainComponant").click(() => {
@@ -84,6 +82,40 @@ $(() => {
     //         // changes ends
     //     $(".rect1, .rect2").removeClass("rect12-Movie");
     // });
+
+let titles = [];
+
+$(() => {
+    
+    fetch("getmovie")
+    .then(response=>{
+        if(!response.ok) throw "response not ok";
+        return response.json()
+    })
+    .then(data=>{
+        titles = data.suggestion
+        console.log(titles);
+    })
+    .catch(err=>alert(err.message))
+
+    const autoSuggest=(ele)=>{
+        ele.autocomplete({
+            source : (obj, giveBackThrough)=>{
+                const data = obj.term;
+                const lst = [];
+                if(data.length < 3)
+                {
+                    for(const title of titles) if(data.toLowerCase() === title.toLowerCase()) lst.push(title);
+                }
+                else
+                {
+                    for(const title of titles) if(title.toLowerCase().startsWith(data.toLowerCase())) lst.push(title);
+                }
+                console.log("Results Found : ", lst.length);
+                giveBackThrough(lst);
+            }
+        });
+    }
 
     $("#movieComponent").hide();
     $("#startButton").click(() => {
@@ -135,6 +167,9 @@ $(() => {
         $(".movies").append(movie);
         console.log(movie);
         $(".movieTrash").show();
+
+        const newInput = $(`#${movieNum}input`);
+        autoSuggest(newInput);
     });
     $("#addButton").click();
     $(".movieTrash").hide();
@@ -149,4 +184,16 @@ const remove = (num) => {
     movieCount--;
     if (movieCount == 1)
         $(".movieTrash").hide();
+}
+
+const getMovieSuggestion=()=>{
+    fetch("getmovie",{
+        "method" : "POST",
+    })
+    .then(response=>{
+        if(!response.ok) throw "response not ok";
+        return response.json()
+    })
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err.message));
 }

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import pandas as pd
 
-df = pd.read_csv('D:\Programming\DataBase\movies.csv',low_memory=False)
+df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
 
 
 @csrf_exempt
@@ -14,16 +14,15 @@ def index(request):
 
 @csrf_exempt
 def getmovie(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        movieTitles = data['movies']
-        print(movieTitles)
-        title = df['title'].tolist
-        dummydata = {
-            'title' : title
-            }
-        print(dummydata)
-        return JsonResponse({"success": True, "suggestion" : dummydata})
+    if request.method == 'GET':
+        # data = json.loads(request.body)
+        # movieTitles = df['movies']
+        # print(movieTitles)
+        title = df['title'].tolist()
+        # print(title)
+        return JsonResponse({"success": True, "suggestion" : title})
+    elif request.method == 'POST':
+        pass
     else:
         return JsonResponse({"success" : False, "error" : "Internal Server Error"})
 

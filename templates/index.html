@@ -10,6 +10,7 @@
     <title>Get Recommended</title>
     <link rel="icon" href="">
     <link rel="stylesheet" href={% static 'css/main.css' %}>
+    <link rel="stylesheet" href={% static 'css/jquery-ui.css' %}>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -75,13 +76,13 @@
                     <option value="Actress">Actress</option>
                 </select><br>
                 </div>
-                <button class="submitnow">SUGGEST ME</button>
+                <button class="submitnow" onclick="getMovieSuggestion()">SUGGEST ME</button>
             </div>
         </div>
         <div class="bg-art">
-            <svg class="rect1">
+            <svg class="rect1 onStartRotate">
             </svg>
-            <svg class="rect2">
+            <svg class="rect2 onStartRotate">
             </svg>
             <svg class="rect3">
             </svg>
@@ -90,6 +91,7 @@
         </div>
     </main>
     <script src={% static 'js/jquery-3.6.0.min.js' %}></script>
+    <script src={% static 'js/jquery-ui.js' %}></script>
     <script src={% static 'js/main.js' %}></script>
     <script src={% static 'js/index.js' %}></script>
 </body>
