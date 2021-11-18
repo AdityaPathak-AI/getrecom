@@ -3,6 +3,10 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
+import pandas as pd
+
+df = pd.read_csv('D:\Programming\DataBase\movies.csv',low_memory=False)
+
 
 @csrf_exempt
 def index(request):
@@ -14,10 +18,11 @@ def getmovie(request):
         data = json.loads(request.body)
         movieTitles = data['movies']
         print(movieTitles)
+        title = df['title'].tolist
         dummydata = {
-            "Title" : "Don69",
-            "Cast" : "ARYAN KHAN",
+            'title' : title
             }
+        print(dummydata)
         return JsonResponse({"success": True, "suggestion" : dummydata})
     else:
         return JsonResponse({"success" : False, "error" : "Internal Server Error"})
