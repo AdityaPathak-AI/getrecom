@@ -5,7 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import pandas as pd
 
-df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
+#df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
+df = pd.read_csv('D:\Programming\DataBase\movies.csv',low_memory=False)
 
 
 @csrf_exempt

@@ -258,9 +258,10 @@ select:focus {
     transform: rotate(-45deg);
 }
 
-.react34-Movie {
-    width: 0px;
-    height: 0px;
+.react12-series {
+    width: 60rem;
+    height: 60rem;
+    transform: rotate(-135deg);
 }
 
 

@@ -69,58 +69,57 @@
 //     $("#surpriseMe").click();
 // });
 
-    //Pending To Impliment
+//Pending To Impliment
 
-    // $("#logoMainComponant").click(() => {
-    //     $("#movieComponent").hide(500, () => {
-    //         $("#homeComponent").show(500);
-    //     });
-    //     $(".rect3, .rect4").show(500);
-    //     // changes
-    //     $("#homeLink").addClass('active')
-    //     $("#movieLink").removeClass('active')
-    //         // changes ends
-    //     $(".rect1, .rect2").removeClass("rect12-Movie");
-    // });
+// $("#logoMainComponant").click(() => {
+//     $("#movieComponent").hide(500, () => {
+//         $("#homeComponent").show(500);
+//     });
+//     $(".rect3, .rect4").show(500);
+//     // changes
+//     $("#homeLink").addClass('active')
+//     $("#movieLink").removeClass('active')
+//         // changes ends
+//     $(".rect1, .rect2").removeClass("rect12-Movie");
+// });
 
 let titles = [];
 
 $(() => {
-    
-    fetch("getmovie")
-    .then(response=>{
-        if(!response.ok) throw "response not ok";
-        return response.json()
-    })
-    .then(data=>{
-        titles = data.suggestion
-        // console.log(titles);
-    })
-    .catch(err=>alert(err.message))
 
-    const autoSuggest=(inputEle)=>{
+    fetch("getmovie")
+        .then(response => {
+            if (!response.ok) throw "response not ok";
+            return response.json()
+        })
+        .then(data => {
+            titles = data.suggestion
+                // console.log(titles);
+        })
+        .catch(err => alert(err.message))
+
+    const autoSuggest = (inputEle) => {
         inputEle.autocomplete({
-            source : (obj, giveBackThrough)=>{
+            source: (obj, giveBackThrough) => {
                 const data = obj.term;
                 const lst = [];
-                if(data.length < 3)
-                {
-                    for(const title of titles) if(data.toLowerCase() === title.toLowerCase()) lst.push(title);
-                }
-                else
-                {
-                    for(const title of titles) if(title.toLowerCase().startsWith(data.toLowerCase())) lst.push(title);
+                if (data.length < 3) {
+                    for (const title of titles)
+                        if (data.toLowerCase() === title.toLowerCase()) lst.push(title);
+                } else {
+                    for (const title of titles)
+                        if (title.toLowerCase().startsWith(data.toLowerCase())) lst.push(title);
                 }
                 console.log("Results Found : ", lst.length);
                 giveBackThrough(lst);
             }
 
         });
-        inputEle.blur((ev)=>{
+        inputEle.blur((ev) => {
             const val = ev.target.value;
             const idx = titles.indexOf(val);
             console.log(idx);
-            if(idx === -1) ev.target.value = "";
+            if (idx === -1) ev.target.value = "";
         });
     }
 
@@ -133,9 +132,12 @@ $(() => {
         // changes
         $("#movieLink").addClass('active')
         $("#homeLink").removeClass('active')
+        $("#seriesLink").removeClass('active')
             // changes ends
             // for adding
         $(".rect1, .rect2").addClass("rect12-Movie");
+        $(".rect1, .rect2").removeClass("react12-series");
+
     });
 
     $("#movieLink").click(() => {
@@ -146,9 +148,11 @@ $(() => {
         // changes
         $("#movieLink").addClass('active')
         $("#homeLink").removeClass('active')
+        $("#seriesLink").removeClass('active')
             // changes ends
             // for adding
         $(".rect1, .rect2").addClass("rect12-Movie");
+        $(".rect1, .rect2").removeClass("react12-series");
     });
 
     $("#homeLink,#logoMainComponant").click(() => {
@@ -159,8 +163,24 @@ $(() => {
         // changes
         $("#homeLink").addClass('active')
         $("#movieLink").removeClass('active')
+        $("#seriesLink").removeClass('active')
             // changes ends
         $(".rect1, .rect2").removeClass("rect12-Movie");
+        $(".rect1, .rect2").removeClass("react12-series");
+
+    });
+
+    $("#seriesLink").click(() => {
+
+        $("#homeComponent").hide(500, () => {
+            $("#movieComponent").show(500);
+        });
+
+        $("#seriesLink").addClass('active')
+        $("#homeLink").removeClass('active')
+        $("#movieLink").removeClass('active')
+        $(".rect1, .rect2").removeClass("rect12-Movie");
+        $(".rect1, .rect2").addClass("react12-series");
     });
 
     $("#addButton").click(() => {
@@ -193,14 +213,14 @@ const remove = (num) => {
         $(".movieTrash").hide();
 }
 
-const getMovieSuggestion=()=>{
-    fetch("getmovie",{
-        "method" : "POST",
-    })
-    .then(response=>{
-        if(!response.ok) throw "response not ok";
-        return response.json()
-    })
-    .then(data=>console.log(data))
-    .catch(err=>console.log(err.message));
+const getMovieSuggestion = () => {
+    fetch("getmovie", {
+            "method": "POST",
+        })
+        .then(response => {
+            if (!response.ok) throw "response not ok";
+            return response.json()
+        })
+        .then(data => console.log(data))
+        .catch(err => console.log(err.message));
 }
