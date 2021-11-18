@@ -94,12 +94,12 @@ $(() => {
     })
     .then(data=>{
         titles = data.suggestion
-        console.log(titles);
+        // console.log(titles);
     })
     .catch(err=>alert(err.message))
 
-    const autoSuggest=(ele)=>{
-        ele.autocomplete({
+    const autoSuggest=(inputEle)=>{
+        inputEle.autocomplete({
             source : (obj, giveBackThrough)=>{
                 const data = obj.term;
                 const lst = [];
@@ -114,6 +114,13 @@ $(() => {
                 console.log("Results Found : ", lst.length);
                 giveBackThrough(lst);
             }
+
+        });
+        inputEle.blur((ev)=>{
+            const val = ev.target.value;
+            const idx = titles.indexOf(val);
+            console.log(idx);
+            if(idx === -1) ev.target.value = "";
         });
     }
 
