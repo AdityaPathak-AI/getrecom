@@ -19,7 +19,7 @@ def getmovie(request):
         # data = json.loads(request.body)
         # movieTitles = df['movies']
         # print(movieTitles)
-        title = df['title'].tolist()
+        title = df['original_title'].tolist()
         # print(title)
         return JsonResponse({"success": True, "suggestion" : title})
     elif request.method == 'POST':
