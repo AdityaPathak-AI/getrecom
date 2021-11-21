@@ -213,9 +213,20 @@ const remove = (num) => {
         $(".movieTrash").hide();
 }
 
-const getMovieSuggestion = () => {
+const getMovieSuggestions = () => {
+
+    const movies = [];
+    for(const ele of $(".movie-title-text"))
+    {
+        movies.push(ele.value);
+    }
+    const jsonToSend = {
+        movies : movies,
+    }   
+    console.log(jsonToSend);
     fetch("getmovie", {
             "method": "POST",
+            "body" : JSON.stringify(jsonToSend)
         })
         .then(response => {
             if (!response.ok) throw "response not ok";
