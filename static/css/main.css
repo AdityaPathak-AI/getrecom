@@ -464,5 +464,11 @@ svg {
     color: white;
     margin : 0.5rem;
     padding : 0.5rem;
+    cursor : pointer;
+    transition : 100ms;
+}
+.result:hover{
+    background-color: #909090;
+    border-radius: 0.2rem;
 }
 /* results ends */

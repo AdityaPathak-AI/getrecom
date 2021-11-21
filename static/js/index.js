@@ -18,7 +18,7 @@ $(() => {
             source: (obj, giveBackThrough) => {
                 const data = obj.term;
                 const lst = [];
-                if (data.length < 3) {
+                if (data.length < 5) {
                     for (const title of titles)
                         if (data.toLowerCase() === title.toLowerCase()) lst.push(title);
                 } else {
@@ -130,6 +130,7 @@ const remove = (num) => {
 
 const getMovieSuggestions = () => {
 
+    $("#description").html("");
     const movies = [];
     for(const ele of $(".movie-title-text"))
     {
@@ -205,7 +206,7 @@ function dataRecieved(text)
                         <h3>Title</h3> ${res.original_title}
                         <h3>Genre</h3> ${res.genre}
                         <h3>Cast</h3> ${res.actors}
-                        <h3>Duration</h3> ${res.duration} Minutes
+                        <h3>Duration</h3> ${(res.duration)} Minutes
                         <h3>Description</h3> ${res.description}
                         <h3>Director</h3> ${res.director} 
                         <h3>Production</h3> ${res.production_company} 
