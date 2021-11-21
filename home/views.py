@@ -6,8 +6,8 @@ import json
 import pandas as pd
 import numpy as np
 
-# df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
-df = pd.read_csv('D:\Programming\DataBase\movies.csv', low_memory=False)
+df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
+# df = pd.read_csv('D:\Programming\DataBase\movies.csv', low_memory=False)
 
 
 @csrf_exempt
@@ -31,7 +31,7 @@ def getmovie(request):
         movieDirector = []
 
         for movieTitle in moviesList:
-            movie = df[df['original_title'].str.contains(movieTitle, na=False)]
+            movie = df[df['original_title'] == movieTitle]
 
             movieG = movie['genre'].dropna()
             movieGArr = np.array(movieG.values)
@@ -131,9 +131,8 @@ def getmovie(request):
         & (df['language'].str.contains(enteredLanguageString))
         | (df['actors'].str.contains(movieActorString))
         ]
-        result = filterGenre.loc[(~(filterGenre['original_title'].str.contains(enteredMovieString)))].sample(n=10)
-
-        print(type(result))
+        result = filterGenre.loc[(~(filterGenre['original_title'].str.contains(enteredMovieString)))].sample(n=10, replace = True)
+        print(result)
         
         # for output in result:
             

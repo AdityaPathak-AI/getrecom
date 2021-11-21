@@ -1,92 +1,7 @@
-// let movieNumber = 0;
-// let filterApplied=false;
-// const addMovieDiv =()=>{
-//     movieNumber++;
-//     const movies = $(".movies");
-//     movies.append(`
-//     <div id="movie${movieNumber}" class="movie">
-//         Enter Movie Name 
-//         <input type="text" id="movie${movieNumber}Input" placeholder="Enter A Movie Name" /> 
-//         <button onclick="removeMovieDiv(this)" id="${movieNumber+'remove'}" class="removeButton"">trash icon</button>
-//     </div>
-//     `);
-//     checkIfOne();
-// }
-// const checkIfOne=()=>{
-//     const movieCount = $(".movie").length;
-//     const removeButton = $(".removeButton");
-//     if(movieCount == 1) removeButton.hide();
-//     else removeButton.show();
-// }
-// const removeMovieDiv=(ele)=>{
-//     const movieDivNum = parseInt(ele.id);
-//     console.log(movieDivNum);
-//     const movieDiv = $("#movie"+movieDivNum);
-//     movieDiv.remove();
-//     checkIfOne();
-// }
-// const sendForPrediction =()=>{
-//     const movies = [];
-//     $(".movie > input").each(
-//         (index,movieInputDiv) => {
-//             if(movieInputDiv.value.length > 0)
-//                 movies.push(movieInputDiv.value.toLowerCase())
-//         }
-//     );
-//     let filter = "";
-//     if(filterApplied) filter = $("#filter")[0].value;
-//     let dataToSend = {
-//         movies,
-//         filterApplied,
-//         filter,
-//     }
-//     console.log(JSON.stringify(dataToSend));
-//     fetch("getmovie",{
-//         "method" : "POST",
-//         "headers": {
-//             'Content-Type': 'application/json'
-//         },
-//         "body" : JSON.stringify(dataToSend),
-//     })
-//     .then(response=>{
-//         if(!response.ok) throw "response not ok";
-//         return response.json()
-//     })
-//     .then(data=>console.log(data))
-//     .catch(err=>console.log(err));
-// }
-// $(()=>{ 
-//     $("#applyFilter").click(()=>{    
-//         $("#filterDiv").show();
-//         filterApplied=true;
-//     });
-//     $("#surpriseMe").click(()=>{
-//         $("#filterDiv").hide();
-//         filterApplied=false;
-//     });
-
-//     $("#addButton").click();
-//     $("#surpriseMe").click();
-// });
-
-//Pending To Impliment
-
-// $("#logoMainComponant").click(() => {
-//     $("#movieComponent").hide(500, () => {
-//         $("#homeComponent").show(500);
-//     });
-//     $(".rect3, .rect4").show(500);
-//     // changes
-//     $("#homeLink").addClass('active')
-//     $("#movieLink").removeClass('active')
-//         // changes ends
-//     $(".rect1, .rect2").removeClass("rect12-Movie");
-// });
-
 let titles = [];
 
 $(() => {
-
+    $("#detailsModal").hide();
     fetch("getmovie")
         .then(response => {
             if (!response.ok) throw "response not ok";
@@ -112,8 +27,8 @@ $(() => {
                 }
                 console.log("Results Found : ", lst.length);
                 giveBackThrough(lst);
-            }
-
+            },
+            maxShowItems: 5,
         });
         inputEle.blur((ev) => {
             const val = ev.target.value;
@@ -230,8 +145,101 @@ const getMovieSuggestions = () => {
         })
         .then(response => {
             if (!response.ok) throw "response not ok";
-            return response.json()
+            return response.text()
         })
-        .then(data => console.log(data))
-        .catch(err => console.log(err.message));
+        .then(data => dataRecieved(data))
+        .catch(err => console.error(err.message));
+}
+
+function processResponseText(text)
+{
+    // console.log(text)
+    const t = text.replaceAll("NaN", "null");
+    const json = JSON.parse(t);
+    return json;
+}
+
+function convertJSONtoArray(json)
+{
+    const props = Object.keys(json);
+    const indexes = Object.keys(json['original_title']);
+    const array = [];
+    for(const index of indexes)
+    {
+        const arrJSON = {};
+        for(const prop of props)
+        {
+            arrJSON[prop] = json[prop][index];
+        }
+        array.push(arrJSON);
+    }
+    return array;
+}
+
+function dataRecieved(text)
+{
+
+    const resJson = processResponseText(text);
+    const resArr = convertJSONtoArray(resJson);
+    const resComponent = $("#results");
+    document.body.style.overflowY = "scroll";
+    resComponent.html(`<h3>Click Them To View Details</h3>`);
+    for(const res of resArr)
+    {
+        console.log(res)
+        const result = $(`
+            <div class="result">
+                ${res.original_title}
+            </div>
+        `); 
+        result.click(()=>{
+            const description = $("#description");
+            description.focus();
+            description.slideUp(2000, ()=>{
+                description.html(" ");
+                const imgComponent = $("<img>");
+                fetchAndSetImage(res.original_title , imgComponent);
+                description.append(imgComponent);
+                description.append(`
+                    <div>
+                        <h3>Title</h3> ${res.original_title}
+                        <h3>Genre</h3> ${res.genre}
+                        <h3>Cast</h3> ${res.actors}
+                        <h3>Duration</h3> ${res.duration} Minutes
+                        <h3>Description</h3> ${res.description}
+                        <h3>Director</h3> ${res.director} 
+                        <h3>Production</h3> ${res.production_company} 
+                        <h3>Writer</h3> ${res.writer} Minutes
+                    </div>
+                `);
+                description.slideDown(2000);
+            });
+        });
+        resComponent.append(result);
+    }
+    
+    // to set overflowY
+    $("a").click(function(){
+        if(this.id != "movieLink") 
+        {
+            document.body.style.overflowY = "hidden";
+            $("#results").html(``);
+            $("#description").html(``);
+        }
+    })
+}
+
+
+
+async function fetchAndSetImage(title, imgComp)
+{
+    var url = "https://api.themoviedb.org/3/search/"+
+    "movie?api_key=5bbbc627da4af8444f8d95d7f13fa3af&query=" + encodeURIComponent(title) ;
+    var req = new Request(url);
+    fetch(url).then(res=>{
+        if(res.ok) return res.json();
+        else throw Error(res.status);
+    }).then(data=>{
+        imgComp.prop("src",`http://image.tmdb.org/t/p/w500/${data.results[0].poster_path}`);
+    }).catch(err=> console.log(err.message))
 }

@@ -446,3 +446,23 @@ svg {
         margin-right: auto;
     }
 }
+
+
+/* results */
+#results{
+    display: flex;
+    flex-wrap: wrap;
+    width : 100%;
+    margin-top: 1rem;
+}
+#results h3{
+    flex-grow: 1;
+    width: 100%;
+}
+.result{
+    background-color: black;
+    color: white;
+    margin : 0.5rem;
+    padding : 0.5rem;
+}
+/* results ends */
