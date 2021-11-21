@@ -134,7 +134,6 @@ def getmovie(request):
         result = filterGenre.loc[(~(filterGenre['original_title'].str.contains(enteredMovieString)))].sample(n=10)
 
         print(type(result))
-        resultList = []
         
         # for output in result:
             
