@@ -1,4 +1,3 @@
-from typing import TYPE_CHECKING
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -6,8 +5,8 @@ import json
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
-# df = pd.read_csv('D:\Programming\DataBase\movies.csv', low_memory=False)
+# df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
+df = pd.read_csv('D:\Programming\DataBase\movies.csv', low_memory=False)
 
 
 @csrf_exempt
@@ -118,11 +117,11 @@ def getmovie(request):
             movieDirectorString = movieDirectorString+"|"+Dirc
         movieDirectorString = movieDirectorString[1:]
 
-        print(movieGenreString)
-        print(movieActorString)
-        print(movieProdComString)
-        print(enteredMovieString)
-        print(enteredLanguageString)
+        # print(movieGenreString)
+        # print(movieActorString)
+        # print(movieProdComString)
+        # print(enteredMovieString)
+        # print(enteredLanguageString)
         
         filterGenre = df[
         (df['genre'].str.contains(movieGenreString))
@@ -132,7 +131,7 @@ def getmovie(request):
         | (df['actors'].str.contains(movieActorString))
         ]
         result = filterGenre.loc[(~(filterGenre['original_title'].str.contains(enteredMovieString)))].sample(n=10, replace = True)
-        print(result)
+        # print(result)
         
         # for output in result:
             
@@ -160,7 +159,7 @@ def getmovie(request):
         # return JsonResponse({"success" : True, "output" : resultList},safe = False)
         resultDict = result.to_dict()
         
-        print(type(resultDict))
+        # print(type(resultDict))
         return JsonResponse(resultDict,safe = False)
         
     else:
