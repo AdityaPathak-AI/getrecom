@@ -21,8 +21,8 @@ python manage.py runserver
 [![LinkedIn](https://img.icons8.com/color/48/000000/linkedin.png)](https://www.linkedin.com/posts/jash-sharma-607940182_datascience-algorithms-frontend-ugcPost-6868799402551607297-Lwx4)
 
 ## Contributing
-Main Repo
-[![Github Repo](https://img.icons8.com/color/48/000000/github--v3.png)](https://github.com/AdityaPathak-AI/getrecom)
+Main Repo: \
+[![Github Repo](https://img.icons8.com/color/48/000000/github--v3.png)](https://github.com/AdityaPathak-AI/getrecom) \
 Pull requests are welcome.\
 For major changes or further queries,\
 please Contact: \
