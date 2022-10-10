@@ -5,9 +5,7 @@ import json
 import pandas as pd
 import numpy as np
 
-# df = pd.read_csv('F:\study\sem5\Data Science\project\movies.csv',low_memory=False)
 df = pd.read_csv('static\\dataset\\movies.csv', low_memory=False)
-
 
 @csrf_exempt
 def index(request):
